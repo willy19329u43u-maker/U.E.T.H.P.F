@@ -1,0 +1,1 @@
+<?php require_once __DIR__ . '/Model.php'; class AuditModel extends Model { protected $table = 'audit_logs'; public function latest($limit = 200) { return db()->query('SELECT a.*, u.username FROM audit_logs a LEFT JOIN users u ON u.id=a.user_id ORDER BY a.id DESC LIMIT ' . (int)$limit)->fetchAll(); } } 

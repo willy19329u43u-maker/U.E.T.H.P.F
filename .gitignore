@@ -1,0 +1,31 @@
+# U.E. Paulo Freire - Git ignore
+
+# Variables de entorno (contienen credenciales)
+.env
+
+# Dependencias de Composer
+vendor/
+
+# Logs y respaldos
+storage/logs/
+storage/backups/
+storage/cache/
+
+# Avatars subidos por usuarios
+assets/avatars/
+
+# Archivos de migración temporales
+*migrate_*.php
+
+# IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Sistema operativo
+Thumbs.db
+.DS_Store
+
+# PHP
+*.php~
