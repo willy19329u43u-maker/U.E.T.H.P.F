@@ -1,0 +1,7 @@
+<?php
+$page_title = 'Búsqueda: ' . e($q); require __DIR__ . '/layout_header.php';
+?>
+<section class="card animate-in"><h2 class="metal-text">Resultados de búsqueda para: "<?= e($q) ?>"</h2></section>
+<section class="card animate-in"><h3>🎓 Estudiantes</h3><?php if (empty($res['students'])): ?><p style="color:var(--muted)">No se encontraron estudiantes.</p><?php else: ?><ul style="list-style:none;padding:0;"><?php foreach ($res['students'] as $s): ?><li style="padding:8px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;"><span><strong><?= e($s['name']) ?></strong> <?php if (!empty($s['course'])): ?><small style="color:var(--muted)">(<?= e($s['course']) ?>)</small><?php endif; ?></span><a class="btn small" target="_blank" href="print_libreta.php?student=<?= (int)$s['id'] ?>">🖨 Libreta</a></li><?php endforeach; ?></ul><?php endif; ?></section>
+<section class="card animate-in"><h3>🗓️ Eventos del Calendario</h3><?php if (empty($res['events'])): ?><p style="color:var(--muted)">No se encontraron eventos.</p><?php else: ?><ul style="list-style:none;padding:0;"><?php foreach ($res['events'] as $ev): ?><li style="padding:8px 0;border-bottom:1px solid var(--line);"><strong><?= e($ev['title']) ?></strong> <small style="color:var(--muted)">— <?= e($ev['event_date']) ?></small></li><?php endforeach; ?></ul><?php endif; ?></section>
+<?php require __DIR__ . '/layout_footer.php'; ?>

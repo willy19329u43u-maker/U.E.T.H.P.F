@@ -1,0 +1,10 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) { session_set_cookie_params(['lifetime'=>0,'path'=>'/','httponly'=>true,'samesite'=>'Lax']); session_start(); }
+function csrf_token() { if (empty($_SESSION['csrf_token'])) $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); return $_SESSION['csrf_token']; }
+function csrf_field() { return '<input type="hidden" name="csrf_token" value="' . e(csrf_token()) . '">'; }
+function verify_csrf() { $s = $_POST['csrf_token'] ?? ''; $r = $_SESSION['csrf_token'] ?? ''; if (!is_string($s) || !is_string($r) || !hash_equals($r, $s)) { http_response_code(419); exit('Token CSRF inválido.'); } }
+function create_password_hash($password) { $salt = random_bytes(16); $it = 120000; return 'pbkdf2-sha256$' . $it . '$' . bin2hex($salt) . '$' . bin2hex(hash_pbkdf2('sha256', $password, $salt, $it, 64, true)); }
+function verify_password($password, $stored) { $p = explode('$', $stored); if (count($p) !== 4 || $p[0] !== 'pbkdf2-sha256') return false; $salt = @hex2bin($p[2]); if ($salt === false) return false; $calc = bin2hex(hash_pbkdf2('sha256', $password, $salt, (int)$p[1], 64, true)); if (hash_equals($p[3], $calc)) return true; return strlen($p[3]) === 64 && hash_equals($p[3], substr($calc, 0, 64)); }
+function client_ip() { return $_SERVER['REMOTE_ADDR'] ?? 'cli'; }
+function login_rate_limited($username) { try { $st = db()->prepare('SELECT COUNT(*) c FROM login_attempts WHERE username=? AND ip=? AND success=0 AND attempted_at > DATE_SUB(NOW(), INTERVAL 15 MINUTE)'); $st->execute([$username, client_ip()]); return (int)($st->fetch()['c'] ?? 0) >= 5; } catch (Throwable $e) { return false; } }
+function register_login_attempt($username, $ok) { try { db()->prepare('INSERT INTO login_attempts (username, ip, success, attempted_at) VALUES (?,?,?,NOW())')->execute([$username, client_ip(), $ok ? 1 : 0]); if ($ok) db()->prepare('DELETE FROM login_attempts WHERE username=? AND ip=? AND success=0')->execute([$username, client_ip()]); } catch (Throwable $e) {} }

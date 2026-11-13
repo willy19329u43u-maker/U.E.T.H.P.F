@@ -1,0 +1,1 @@
+<!-- Nota: Los archivos views/ son solo para referencia del proyecto original -->

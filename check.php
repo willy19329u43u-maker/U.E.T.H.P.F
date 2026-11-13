@@ -1,0 +1,1 @@
+<?php require_once __DIR__ . '/core/bootstrap.php'; $tables = db()->query("SHOW TABLES")->fetchAll(); echo "<h2>✅ Conexión Exitosa</h2><ul>"; foreach ($tables as $t) { foreach ($t as $name) echo "<li>$name</li>"; } echo "</ul>";

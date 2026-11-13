@@ -1,3 +1,8 @@
+/* ==========================================================================
+   U.E. Paulo Freire - CSS Responsivo v1.0
+   ========================================================================== */
+
+/* ==================== VARIABLES ============================================ */
 :root {
     --metal-strong: linear-gradient(145deg,#ffffff 0%,#9fb0c3 22%,#e8eef4 40%,#5c7186 62%,#cfd8e3 100%);
     --metal-edge: linear-gradient(120deg,rgba(255,255,255,.95),rgba(159,176,195,.35) 40%,rgba(255,255,255,.8) 70%,rgba(159,176,195,.5));
@@ -16,6 +21,8 @@
     --line: rgba(159,176,195,.25);
     --glow: 0 0 22px rgba(25,195,230,.3);
     --shadow: 0 18px 44px rgba(0,0,0,.5);
+    --danger: #d62828;
+    --success: #2ecc71;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,29 +34,33 @@ html, body {
     background: linear-gradient(135deg, var(--bg1), var(--bg2) 45%, var(--bg3));
     background-size: 220% 220%;
     animation: bgShift 18s ease-in-out infinite alternate;
+    -webkit-tap-highlight-color: transparent;
 }
 
+/* ==========================================================================
+   ANIMACIONES
+   ========================================================================== */
 @keyframes bgShift {
     from { background-position: 0% 0%; }
     to { background-position: 100% 100%; }
 }
 
-.metal-text {
-    background: linear-gradient(120deg,#f8fbff 0%,#8fa6b8 18%,#ffffff 36%,var(--primary) 55%,var(--accent) 75%,#f8fbff 100%);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: shine 6s linear infinite;
-    filter: drop-shadow(0 1px 1px rgba(0,0,0,.35));
-}
-
-body.theme-light .metal-text { filter: none; }
-
 @keyframes shine {
     to { background-position: 200% center; }
 }
 
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   LOGIN
+   ========================================================================== */
 .login-bg {
     position: fixed;
     inset: 0;
@@ -63,37 +74,29 @@ body.theme-light .metal-text { filter: none; }
     min-height: 100vh;
     display: grid;
     place-items: center;
-    padding: 26px 14px;
-}
-
-.shell-wrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 26px 14px;
+    padding: 20px 16px;
 }
 
 .login-card {
     display: grid;
-    grid-template-columns: 1.05fr 1fr;
-    width: min(1020px, 96vw);
-    max-width: 900px;
+    grid-template-columns: 1fr 1.2fr;
+    width: min(1000px, 94vw);
+    max-width: 1000px;
     background: var(--surface);
-    border-radius: 22px;
+    border-radius: 20px;
     overflow: hidden;
     box-shadow: var(--shadow);
-    backdrop-filter: blur(14px);
+    backdrop-filter: blur(12px);
     border: 1px solid var(--line);
 }
 
 .login-left {
     position: relative;
-    padding: 30px;
+    padding: 32px 24px;
     color: #eaf6fb;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 14px;
     overflow: hidden;
     background: linear-gradient(160deg, var(--bg2), var(--primary-2) 60%, var(--primary));
     background-size: 200% 200%;
@@ -101,7 +104,7 @@ body.theme-light .metal-text { filter: none; }
 }
 
 .login-left h1 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     margin: 0;
 }
 
@@ -112,21 +115,21 @@ body.theme-light .metal-text { filter: none; }
 }
 
 .brand-logo {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     display: block;
 }
 
 .login-right {
-    padding: 30px;
+    padding: 32px;
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
 .login-right h2 {
-    font-size: 1.5rem;
-    margin-bottom: 8px;
+    font-size: 1.6rem;
+    margin: 0;
 }
 
 .subtitle {
@@ -137,8 +140,8 @@ body.theme-light .metal-text { filter: none; }
 
 .illus {
     color: #bfe9f5;
-    margin: 6px auto 0;
-    width: min(300px, 80%);
+    margin: 8px auto 0;
+    width: min(260px, 85%);
 }
 
 .svg-school {
@@ -158,7 +161,7 @@ body.theme-light .metal-text { filter: none; }
 }
 
 .input {
-    padding: 10px 14px;
+    padding: 11px 14px;
     border: 1px solid var(--line);
     border-radius: 8px;
     background: var(--surface-2);
@@ -189,7 +192,7 @@ body.theme-light .metal-text { filter: none; }
 
 .btn {
     display: inline-block;
-    padding: 10px 18px;
+    padding: 11px 18px;
     border-radius: 8px;
     border: none;
     cursor: pointer;
@@ -246,6 +249,9 @@ body.theme-light .metal-text { filter: none; }
     text-decoration: underline;
 }
 
+/* ==========================================================================
+   LAYOUT PRINCIPAL
+   ========================================================================== */
 .layout {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -253,25 +259,26 @@ body.theme-light .metal-text { filter: none; }
 }
 
 .sidebar {
-    width: 78px;
+    width: 74px;
     overflow: hidden;
     transition: width .25s ease;
     position: sticky;
     top: 0;
     height: 100vh;
-    padding: 16px 12px;
+    padding: 14px 10px;
     background: linear-gradient(180deg, var(--bg2), var(--primary-2) 60%, var(--primary));
+    z-index: 100;
 }
 
 .sidebar:hover, .sidebar.expanded {
-    width: 250px;
+    width: 240px;
 }
 
 .brand {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 22px;
+    margin-bottom: 18px;
     white-space: nowrap;
 }
 
@@ -297,7 +304,7 @@ body.theme-light .metal-text { filter: none; }
 .menu {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
 }
 
 .menu-link {
@@ -306,21 +313,22 @@ body.theme-light .metal-text { filter: none; }
     gap: 12px;
     color: rgba(234,246,251,.92);
     text-decoration: none;
-    padding: 12px;
-    border-radius: 12px;
+    padding: 12px 10px;
+    border-radius: 10px;
     white-space: nowrap;
     transition: .2s;
+    font-size: .95rem;
 }
 
 .menu-link:hover, .menu-link.active {
     background: linear-gradient(120deg,rgba(255,255,255,.2),rgba(25,195,230,.28));
-    transform: translateX(4px);
+    transform: translateX(3px);
     box-shadow: inset 0 1px 0 rgba(255,255,255,.3);
 }
 
 .ico {
     font-size: 1.15rem;
-    min-width: 26px;
+    min-width: 28px;
     text-align: center;
 }
 
@@ -340,6 +348,7 @@ body.theme-light .metal-text { filter: none; }
     border-radius: 14px;
     box-shadow: var(--shadow);
     backdrop-filter: blur(8px);
+    z-index: 50;
 }
 
 .topbar h1 {
@@ -402,14 +411,14 @@ body.theme-light .metal-text { filter: none; }
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
     gap: 16px;
 }
 
 .stat-card {
     position: relative;
     overflow: hidden;
-    animation: fadeUp .35s ease both;
+    animation: fadeIn .4s ease both;
 }
 
 .stat-card::before {
@@ -521,38 +530,8 @@ th {
     border:1px solid rgba(40,167,69,.3);
 }
 
-.pw-field {
-    position: relative;
-}
-
-.pw-toggle {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.2rem;
-}
-
 .form-actions {
     margin-top: 16px;
-}
-
-.auth-alt {
-    margin-top: 16px;
-    text-align: center;
-    font-size: 0.9rem;
-}
-
-.auth-alt a {
-    color: var(--primary);
-    text-decoration: none;
-}
-
-.auth-alt a:hover {
-    text-decoration: underline;
 }
 
 .public-footer {
@@ -560,4 +539,260 @@ th {
     text-align: center;
     color: var(--muted);
     font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+@media (max-width: 991px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar {
+        width: 70px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        height: auto;
+        z-index: 1000;
+        padding: 14px 8px;
+        box-shadow: 4px 0 20px rgba(0,0,0,.3);
+    }
+    
+    .sidebar:hover, .sidebar.expanded {
+        width: 220px;
+    }
+    
+    .brand-label,
+    .label {
+        opacity: 0;
+        transition: opacity .2s ease;
+    }
+    
+    .sidebar:hover .label,
+    .sidebar.expanded .label,
+    .sidebar:hover .brand-label,
+    .sidebar.expanded .brand-label {
+        opacity: 1;
+    }
+    
+    .sidebar.expanded {
+        box-shadow: 4px 0 24px rgba(0,0,0,.35);
+    }
+    
+    .main {
+        padding: 16px;
+    }
+    
+    .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        padding: 10px 14px;
+    }
+    
+    .topbar h1 {
+        font-size: 1.15rem;
+    }
+    
+    .topbar-avatar {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .content {
+        gap: 14px;
+    }
+    
+    .card {
+        padding: 16px;
+        border-radius: 14px;
+    }
+    
+    .stats-card h3 {
+        font-size: 0.85rem;
+    }
+    
+    .count {
+        font-size: 1.5rem;
+    }
+    
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    table {
+        min-width: 600px;
+        font-size: 12px;
+    }
+    
+    th, td {
+        padding: 6px 8px;
+        font-size: 11px;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .btn.small {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+    }
+    
+    /* Toggle button para móvil */
+    .mobile-menu-toggle {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-card {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: auto;
+    }
+    
+    .login-left {
+        padding: 24px;
+    }
+    
+    .login-right {
+        padding: 24px;
+    }
+    
+    .brand-logo {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .login-right h2 {
+        font-size: 1.3rem;
+    }
+    
+    .input {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+    
+    .btn {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .table-responsive {
+        font-size: 10px;
+    }
+    
+    th, td {
+        padding: 5px 6px;
+        font-size: 10px;
+    }
+    
+    .card {
+        padding: 14px;
+    }
+    
+    .stat-card h3 {
+        font-size: 0.82rem;
+    }
+    
+    .count {
+        font-size: 1.3rem;
+    }
+    
+    .sidebar {
+        width: 64px;
+    }
+    
+    .sidebar.expanded {
+        width: 190px;
+    }
+    
+    .brand-logo {
+        width: 34px;
+        height: 34px;
+    }
+    
+    .main {
+        padding: 12px;
+    }
+    
+    .topbar {
+        padding: 10px 14px;
+    }
+    
+    .topbar h1 {
+        font-size: 1.15rem;
+    }
+}
+
+/* ==========================================================================
+   UTILIDADES
+   ========================================================================== */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-left { text-align: left; }
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.flex { display: flex; }
+.flex-col { display: flex; flex-direction: column; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; }
+.gap-8 { gap: 8px; }
+.gap-12 { gap: 12px; }
+.gap-16 { gap: 16px; }
+
+.hidden { display: none !important; }
+.block { display: block !important; }
+.flex { display: flex !important; }
+.inline-block { display: inline-block !important; }
+
+.rounded-lg { border-radius: 8px; }
+.rounded-xl { border-radius: 12px; }
+.rounded-full { border-radius: 9999px; }
+
+.shadow { box-shadow: var(--shadow); }
+.border { border: 1px solid var(--line); }
+.rounded { border-radius: 8px; }
+
+@media (max-width: 767px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 70px;
+        z-index: 1000;
+        padding: 14px 8px;
+    }
+    
+    .sidebar.expanded {
+        width: 210px;
+        z-index: 1000;
+    }
+    
+    .sidebar .label,
+    .sidebar .brand-label {
+        opacity: 0;
+    }
+    
+    .sidebar.expanded .label,
+    .sidebar.expanded .brand-label,
+    .sidebar:hover .label,
+    .sidebar:hover .brand-label {
+        opacity: 1;
+    }
 }

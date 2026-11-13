@@ -1,5 +1,5 @@
 /**
- * Auth.js - Manejo de autenticación con localStorage
+ * auth.js - Manejo de autenticación con localStorage
  */
 
 const Auth = {
