@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - U.E. Paulo Freire</title>
+    <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body class="app-body">
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="brand">
+                <img src="assets/img/logo-escudo.svg" alt="Logo U.E. Paulo Freire" class="brand-logo">
+                <span class="brand-text">U.E. Paulo Freire</span>
+            </div>
+            <nav class="menu">
+                <a href="dashboard.html" class="menu-link">🏠 Panel</a>
+                <a href="students.html" class="menu-link">🎓 Estudiantes</a>
+                <a href="attendance.html" class="menu-link">✅ Asistencia</a>
+                <a href="tardies.html" class="menu-link">⏰ Atrasos</a>
+                <a href="schedules.html" class="menu-link">🕒 Horarios</a>
+                <a href="calendar.html" class="menu-link">📅 Calendario</a>
+                <a href="announcements.html" class="menu-link">📢 Anuncios</a>
+                <a href="profile.html" class="menu-link active">👤 Perfil</a>
+                <a href="#" id="logoutBtn" class="menu-link">Salir</a>
+            </nav>
+        </aside>
+        <div class="main">
+            <header class="topbar">
+                <div class="topbar-controls">
+                    <button id="menuToggle" class="btn icon-btn" aria-label="Menu">☰</button>
+                    <button id="sideToggle" class="btn icon-btn" aria-label="Expandir">⇄</button>
+                </div>
+                <h1 class="metal-text">Mi Perfil</h1>
+                <div class="topbar-user">
+                    <a class="btn icon-btn" href="#">☀️</a>
+                    <a class="btn icon-btn" href="#">ES</a>
+                    <a href="#" id="logoutBtn" class="btn btn-danger small" style="text-decoration: none;">Salir</a>
+                </div>
+            </header>
+            <main class="content">
+                <section class="card animate-in">
+                    <h2 class="metal-text">Mi Perfil</h2>
+                    <div style="display:flex;align-items:center;gap:20px;margin-bottom:20px">
+                        <img src="assets/img/avatars/avatar-estudiante.svg" alt="Avatar" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid var(--primary)" onerror="this.src='assets/img/avatars/avatar-estudiante.svg'">
+                        <div>
+                            <h3 style="margin:0">Usuario Demo</h3>
+                            <p style="margin:4px 0 0;color:var(--muted)">Estudiante</p>
+                        </div>
+                    </div>
+                    <form method="post" class="form-grid" enctype="multipart/form-data">
+                        <label class="field"><span>Nombre completo</span><input class="input" type="text" name="full_name" value="Usuario Demo"></label>
+                        <label class="field"><span>Email</span><input class="input" type="email" name="email" value=""></label>
+                        <label class="field"><span>URL de la foto</span><input class="input" type="url" name="avatar_url" value="" placeholder="https://..."></label>
+                        <label class="field"><span>Subir foto</span><input class="input" type="file" name="avatar_file" accept="image/png,image/jpeg,image/webp"></label>
+                        <hr style="border:0;border-top:1px solid var(--line);margin:10px 0">
+                        <label class="field"><span>Contraseña actual</span><input class="input" type="password" name="current_password" autocomplete="current-password"></label>
+                        <label class="field"><span>Nueva contraseña</span><input class="input" type="password" name="new_password" minlength="6" autocomplete="new-password"></label>
+                        <div class="form-actions"><button class="btn btn-metal" type="submit">Guardar</button></div>
+                    </form>
+                </section>
+            </main>
+        </div>
+    </div>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

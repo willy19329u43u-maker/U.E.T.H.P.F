@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda - U.E. Paulo Freire</title>
+    <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body class="app-body">
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="brand">
+                <img src="assets/img/logo-escudo.svg" alt="Logo U.E. Paulo Freire" class="brand-logo">
+                <span class="brand-text">U.E. Paulo Freire</span>
+            </div>
+            <nav class="menu">
+                <a href="dashboard.html" class="menu-link">🏠 Panel</a>
+                <a href="students.html" class="menu-link">🎓 Estudiantes</a>
+                <a href="attendance.html" class="menu-link">✅ Asistencia</a>
+                <a href="tardies.html" class="menu-link">⏰ Atrasos</a>
+                <a href="schedules.html" class="menu-link">🕒 Horarios</a>
+                <a href="calendar.html" class="menu-link">📅 Calendario</a>
+                <a href="announcements.html" class="menu-link">📢 Anuncios</a>
+                <a href="profile.html" class="menu-link">👤 Perfil</a>
+                <a href="#" id="logoutBtn" class="menu-link">Salir</a>
+            </nav>
+        </aside>
+        <div class="main">
+            <header class="topbar">
+                <div class="topbar-controls">
+                    <button id="menuToggle" class="btn icon-btn" aria-label="Menu">☰</button>
+                    <button id="sideToggle" class="btn icon-btn" aria-label="Expandir">⇄</button>
+                </div>
+                <h1 class="metal-text">Búsqueda</h1>
+                <form class="search-form" method="get" action="search.html" style="margin-right: auto;">
+                    <input class="input" type="text" name="q" placeholder="🔍 Buscar..." value="">
+                </form>
+                <div class="topbar-user">
+                    <a class="btn icon-btn" href="#">☀️</a>
+                    <a class="btn icon-btn" href="#">ES</a>
+                    <a href="#" id="logoutBtn" class="btn btn-danger small" style="text-decoration: none;">Salir</a>
+                </div>
+            </header>
+            <main class="content">
+                <section class="card animate-in">
+                    <h2 class="metal-text">Búsqueda</h2>
+                    <p style="color:var(--muted)">Ingresa un término de búsqueda en el campo superior.</p>
+                </section>
+            </main>
+        </div>
+    </div>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

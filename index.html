@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U.E. Paulo Freire - Iniciar Sesión</title>
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="login-bg">
+    <div class="login-shell">
+        <section class="login-card">
+            <div class="login-left">
+                <div class="brand-row">
+                    <img src="assets/img/logo-escudo.svg" alt="Logo U.E. Paulo Freire" class="brand-logo">
+                    <h1 class="metal-text">U.E. Paulo Freire</h1>
+                </div>
+                <p class="hero-text">Canal oficial, seguro y en tiempo real entre la escuela y la familia</p>
+                <div class="illus">
+                    <svg viewBox="0 0 200 120" class="svg-school" aria-hidden="true">
+                        <rect x="60" y="50" width="80" height="50" rx="6" fill="#19c3e6" opacity=".9"/>
+                        <rect x="70" y="60" width="14" height="14" rx="2" fill="#0b1220" opacity=".55"/>
+                        <rect x="93" y="60" width="14" height="14" rx="2" fill="#0b1220" opacity=".55"/>
+                        <rect x="116" y="60" width="14" height="14" rx="2" fill="#0b1220" opacity=".55"/>
+                        <rect x="92" y="78" width="16" height="22" rx="2" fill="#0b1220" opacity=".7"/>
+                        <polygon points="100,18 58,50 142,50" fill="#19c3e6" opacity=".75"/>
+                        <rect x="98" y="4" width="3" height="16" fill="#19c3e6"/>
+                        <polygon points="101,4 122,9 101,14" fill="#ffb703"/>
+                        <rect x="10" y="100" width="180" height="6" rx="3" fill="#19c3e6" opacity=".35"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="login-right">
+                <h2>Iniciar sesión</h2>
+                <p class="subtitle">Acceso seguro para la comunidad educativa</p>
+                
+                <div id="login-error" style="color:#d62828; font-size:.85rem; margin-bottom:15px; display:none;"></div>
+                
+                <form id="loginForm">
+                    <label class="field">
+                        <span>Usuario o RUDE/CI</span>
+                        <input class="input" type="text" name="username" placeholder="Ej: admin" required autocomplete="username">
+                    </label>
+                    <div class="field pw-field">
+                        <span>Contraseña</span>
+                        <input class="input" type="password" name="password" id="pwInput" required autocomplete="current-password">
+                        <button type="button" class="pw-toggle" id="pwToggle">👁</button>
+                    </div>
+                    <button class="btn btn-metal" type="submit" id="loginBtn">
+                        <span class="btn-label">Entrar</span>
+                        <span class="spinner" id="loginSpinner" style="display:none;"></span>
+                    </button>
+                </form>
+                <p class="auth-alt"><a href="#">¿Olvidó su contraseña?</a></p>
+            </div>
+        </section>
+    </div>
+    <script src="assets/js/storage.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
